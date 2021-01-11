@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Security.Claims;
+using CrkvaProjekt.Models;
 
 namespace CrkvaProjekt
 {
@@ -31,7 +32,7 @@ namespace CrkvaProjekt
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("ZavrsniRad")));
-            services.AddDefaultIdentity<IdentityUser<int>>(options => options.SignIn.RequireConfirmedAccount = false)
+            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<IdentityRole<int>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.Configure<IdentityOptions>(options => { options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier;options.Password.RequireNonAlphanumeric = false; });

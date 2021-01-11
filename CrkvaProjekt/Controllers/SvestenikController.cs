@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CrkvaProjekt.Data;
+using CrkvaProjekt.Models;
 using CrkvaProjekt.ViewModels.Svestenici;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,8 +13,8 @@ namespace CrkvaProjekt.Controllers
     public class SvestenikController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<IdentityUser<int>> _userManager;
-        public SvestenikController(ApplicationDbContext context, UserManager<IdentityUser<int>> userManager)
+        private readonly UserManager<User> _userManager;
+        public SvestenikController(ApplicationDbContext context, UserManager<User> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -33,13 +34,13 @@ namespace CrkvaProjekt.Controllers
         }
         public IActionResult ConfirmObrisi(string SvestenikID)
         {
-            IdentityUser<int> svestenik = _context.Users.Find(Int32.Parse(SvestenikID));
+            User svestenik = _context.Users.Find(Int32.Parse(SvestenikID));
             SvestenikPrikaziVM model = new SvestenikPrikaziVM { SvestenikID = svestenik.Id.ToString(), Email = svestenik.Email };
             return View(model);
         }
         public IActionResult Obrisi(string SvestenikID)
         {
-            IdentityUser<int> svestenik = _context.Users.Find(Int32.Parse(SvestenikID));
+            User svestenik = _context.Users.Find(Int32.Parse(SvestenikID));
             if (svestenik == null)
             {
                 TempData["error_poruka"] = "Sveštenik ne postoji. ";
