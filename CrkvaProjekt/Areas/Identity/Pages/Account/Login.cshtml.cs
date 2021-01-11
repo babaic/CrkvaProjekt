@@ -15,20 +15,21 @@ using System.Security.Claims;
 using CrkvaProjekt.Controllers;
 using CrkvaProjekt.Data;
 using System.Security.Cryptography.X509Certificates;
+using CrkvaProjekt.Models;
 
 namespace CrkvaProjekt.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
-        private readonly UserManager<IdentityUser<int>> _userManager;
-        private readonly SignInManager<IdentityUser<int>> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private readonly ApplicationDbContext _context;
 
-        public LoginModel(SignInManager<IdentityUser<int>> signInManager, 
+        public LoginModel(SignInManager<User> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<IdentityUser<int>> userManager,ApplicationDbContext context)
+            UserManager<User> userManager,ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;

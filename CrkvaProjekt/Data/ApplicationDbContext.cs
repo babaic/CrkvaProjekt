@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CrkvaProjekt.Data
 {
-    public partial class ApplicationDbContext : IdentityDbContext<IdentityUser<int>, IdentityRole<int>, int>
+    public partial class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
