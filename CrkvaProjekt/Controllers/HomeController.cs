@@ -20,31 +20,31 @@ namespace CrkvaProjekt.Controllers
         private readonly ApplicationDbContext _context;
         private readonly ILogger<HomeController> _logger;
         private readonly Translator _translate = new Translator();
-        public HomeController(ILogger<HomeController> logger,ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
             _context = context;
 
         }
 
-        public async Task<IActionResult> Index(string searchString, int pageNumber=1)
+        public async Task<IActionResult> Index(string searchString, int pageNumber = 1)
         {
 
-           var query = _context.Obavjestenja.OrderByDescending(x => x.DatumObjavljivanja).Select(x => new ObavjestenjaPrikaziVM
+            var query = _context.Obavjestenja.OrderByDescending(x => x.DatumObjavljivanja).Select(x => new ObavjestenjaPrikaziVM
             {
-                ObavjestenjaID=x.ObavjestenjaID,
-                Slika=x.Slika,
-                Naslov=x.Naslov,
-                DatumObjavljivanja=x.DatumObjavljivanja,
-                ObavjestenjeKategorija=x.ObavjestenjaKategorije.Naziv,
-                Text=x.Text
+                ObavjestenjaID = x.ObavjestenjaID,
+                Slika = x.Slika,
+                Naslov = x.Naslov,
+                DatumObjavljivanja = x.DatumObjavljivanja,
+                ObavjestenjeKategorija = x.ObavjestenjaKategorije.Naziv,
+                Text = x.Text
             }).AsQueryable();
             if (!string.IsNullOrEmpty(searchString))
             {
                 query = query.Where(x => x.Naslov.Contains(searchString));
             }
             int pageSize = 5;
-            return View(await PaginatedList<ObavjestenjaPrikaziVM>.CreateAsync(query.AsNoTracking(),pageNumber,pageSize));
+            return View(await PaginatedList<ObavjestenjaPrikaziVM>.CreateAsync(query.AsNoTracking(), pageNumber, pageSize));
         }
         public async Task<IActionResult> IndexCir(string searchString, int pageNumber = 1)
         {
@@ -69,7 +69,7 @@ namespace CrkvaProjekt.Controllers
                     ObavjestenjeKategorija = _translate.ConvertLatinToCyrillic(x.ObavjestenjaKategorije.Naziv),
                     Text = _translate.ConvertLatinToCyrillic(x.Text)
                 }).AsQueryable();
-            }           
+            }
             int pageSize = 5;
             return View(await PaginatedList<ObavjestenjaPrikaziVM>.CreateAsync(query.AsNoTracking(), pageNumber, pageSize));
         }
@@ -88,10 +88,10 @@ namespace CrkvaProjekt.Controllers
             var query = _context.Novosti.OrderByDescending(x => x.DatumObjavljivanja).Select(x => new NovostiPrikaziVM
             {
                 NovostiID = x.NovostiID,
-                Naslov=_translate.ConvertLatinToCyrillic(x.Naslov),
-                DatumObjavljivanja=x.DatumObjavljivanja,
-                Slika=x.Slika,
-                Text=_translate.ConvertLatinToCyrillic(x.Text)               
+                Naslov = _translate.ConvertLatinToCyrillic(x.Naslov),
+                DatumObjavljivanja = x.DatumObjavljivanja,
+                Slika = x.Slika,
+                Text = _translate.ConvertLatinToCyrillic(x.Text)
             }).AsQueryable();
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -316,6 +316,10 @@ namespace CrkvaProjekt.Controllers
             return View();
         }
         public IActionResult GrobljeStaraCir()
+        {
+            return View();
+        }
+        public IActionResult Doniraj()
         {
             return View();
         }
