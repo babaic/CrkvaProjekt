@@ -1,0 +1,24 @@
+﻿@using CrkvaProjekt.ViewModels.Svestenici
+@model CrkvaProjekt.ViewModels.Svestenici.SvestenikPrikaziVM
+@{ 
+    ViewData["Title"] = "Brisanje sveštenika ";
+}
+
+<h2>Upozorenje!</h2>
+
+Upravo ćete izbrisati sljedećeg sveštenika : 
+
+<br /><hr />
+
+<form action="/Svestenik/Obrisi?SvestenikID=@Model.SvestenikID" >
+    <label>Email: </label>
+    <strong>@Model.Email</strong>
+    <br />
+    Jeste li sigurni da želite izbrisati ovaj zapis?
+    <br />
+    @Html.HiddenFor(x=> x.SvestenikID)
+    <input class="btn btn-danger" type="submit" value="Obrisi  " />
+    <a style="margin:100px" href="/Svestenik/Prikazi" class="btn btn-info">Odustani</a>
+</form>
+
+

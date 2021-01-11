@@ -1,0 +1,89 @@
+﻿@model CrkvaProjekt.ViewModels.Obavjestenja.ObavjestenjaUrediVM
+@using CrkvaProjekt.Models
+@{ 
+    ViewData["Title"] = "Uredi";
+    Layout = "AdminPage";
+}
+
+<head>
+    <style>
+        input.error {
+            border: solid 1px red;
+        }
+    </style>
+</head>
+
+<h2>Uredi</h2>
+
+<form id="rForm" enctype="multipart/form-data" action="/Obavjestenja/Snimi" method="post">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.ObavjestenjaID)
+    <div class="form-group">
+
+        <label asp-for="Naslov" class="control-label">Naslov</label>
+        <div>
+            <input asp-for="Naslov" />
+            <span asp-validation-for="Naslov" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Text" class="control-label">Text</label>
+        <div>
+            @Html.TextAreaFor(x => x.Text, new { @cols = "100", @rows = "8", @style = "width:100%;" })
+            <span asp-validation-for="Text" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <label>Kategorija</label>
+        <div>
+            @Html.DropDownListFor(x => x.ObavjestenjaKategorijeID, Model.kategorije)
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="UploadSlike.Slika"></label>
+        <div>
+            <input asp-for="UploadSlike.Slika" type="file">
+            <span asp-validation-for="UploadSlike.Slika"></span>
+        </div>
+    </div>
+    <br />
+
+    <input type="submit" value="Snimi" />
+</form>
+
+
+<script>
+    $(document).ready(function () {
+        $("#rForm").validate({
+            rules: {
+                Naslov: {
+                    required: true,
+                    maxlength: 30,
+                    minlength: 3
+                },
+                Text: {
+                    required: true,
+                    maxlength: 600,
+                    minlength: 3,
+                }
+
+            },
+            messages: {
+                Naslov: {
+                    required: "Naslov je obavezan. ",
+                    maxlength: "Maksimalno 30 znakova. ",
+                    minlength:"Naslov mora imati barem 3 znaka. "
+                },
+                Text: {
+                    required: "Text je obavezan. ",
+                    maxlength: "Maksimalno 600 znakova. ",
+                    minlength:"Text mora imati barem 3 znaka. "
+                }
+            }
+        })
+    })
+
+</script>

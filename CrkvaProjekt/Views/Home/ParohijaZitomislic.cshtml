@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "Parohija Žitomislić";
+    Layout = "Basic";
+}
+
+<head>
+    <style>
+        .prvaslika {
+            padding: 1px;
+            margin: 0 15px 5px 0;
+            display: inline;
+            border: solid 0px black;
+            float: left;
+            max-width: 100%;
+        }
+
+        .neki p a:visited {
+            text-decoration: none;
+            color: #fff;
+            border: 0px;
+        }
+
+        .neki p a {
+            margin: 0;
+            padding: 0;
+        }
+
+        .neki p {
+            padding: 5px 0px;
+            font-family: Arial, serif;
+        }
+
+        .neki {
+            text-align: center;
+            padding: 10px;
+            background: #c2a073;
+        }
+        @@media (max-width:280px) {
+            .prvaslika {
+                float: none;
+            }
+        }
+    </style>
+</head>
+
+<div class="neki">
+    <p>Parohija Žitomislićka</p>
+</div>

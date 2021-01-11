@@ -1,0 +1,38 @@
+/*!
+ * Start Bootstrap - Blog Home (https://startbootstrap.com/templates/blog-home)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-blog-home/blob/master/LICENSE)
+ */
+body {
+  padding-top: 56px;
+}
+.gallery{
+    overflow:hidden;
+    margin-top:10px;
+    width:100%;
+    clear:both;
+    display:block;
+}
+.kolumna{
+    float:left;
+    width:25%;
+    padding:10px;
+}
+.kolumna img{
+    border:1px solid #ffffff;
+    display:block;
+    margin:4px 0px 4px 5px;
+    padding:4px;
+    position:relative;
+    cursor:pointer;
+}
+
+.kolumna img:hover{
+    opacity:1;
+}
+
+.gallery:after{
+    content:"";
+    display:table;
+    clear:both;
+}

@@ -1,0 +1,48 @@
+﻿@using CrkvaProjekt.ViewModels.Svestenici
+@using CrkvaProjekt.Models
+
+@{
+    ViewData["Title"] = "Prikazi";
+    Layout = "AdminPage";
+    List<SvestenikPrikaziVM> svestenici = (List<SvestenikPrikaziVM>)ViewData["svestenici-kljuc"];
+    string success_poruka = (string)TempData["success_poruka"];
+    string error_poruka = (string)TempData["error_poruka"];
+}
+
+<h2>Prikaz sveštenika</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Akcije</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in svestenici)
+        {
+            <tr>
+                <td>@x.Email</td>
+                <td>
+                    <a href="/Svestenik/ConfirmObrisi?SvestenikID=@x.SvestenikID" class="btn btn-danger">Obriši</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (TempData["error_poruka"] != null)
+{
+    <br />
+    <div class="alert alert-danger">
+        @error_poruka
+    </div>
+}
+@if (TempData["success_poruka"] != null)
+{
+    <br />
+    <div class="alert alert-light">
+        @success_poruka
+    </div>
+}
+<a href="/Identity/Account/Register" class="btn btn-success">Dodaj novog sveštenika</a>
+<a href="/Admin/Prikazi" class="btn btn-info">Back</a>

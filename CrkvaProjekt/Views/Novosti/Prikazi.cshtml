@@ -1,0 +1,70 @@
+﻿@using CrkvaProjekt.Models
+
+@{
+    ViewData["Title"] = "Prikazi";
+    Layout = "AdminPage";
+    List<Novosti> novosti = (List<Novosti>)ViewData["novosti-kljuc"];
+    string success_poruka = (string)TempData["success_poruka"];
+    string error_poruka = (string)TempData["error_poruka"];
+}
+
+    <h1>Prikaz Novosti</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Naslov</th>
+                <th>Sadržaj</th>
+                <th>Slika Thumbnail</th>
+                <th>Datum objavljivanja</th>
+                <th>Akcije</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in novosti)
+            {
+                <tr>
+                    <td hidden>@x.NovostiID</td>
+                    <td>@x.Naslov</td>
+                    @if(x.Text.Length>40){
+                    <td>@x.Text.Substring(0,40)  ...</td>
+                    }
+                    else{
+                    <td>@x.Text</td>
+                    }
+                    @if (x.Slika != null)
+                    {
+                    <td><img src="data:image;base64,@System.Convert.ToBase64String(x.Slika)" width="140" height="80" /></td>
+                    }
+                    else
+                    {
+                        <td>Nema slike</td>
+                    }
+                    <td>@x.DatumObjavljivanja</td>
+                    <td>
+                        <a href="/Novosti/Uredi?NovostiID=@x.NovostiID" class="btn btn-info">Uredi</a>
+                        <a href="/Novosti/Obrisi?NovostiID=@x.NovostiID" class="btn btn-danger">Obriši</a>
+                        <a href="/NovostiSlike/Dodaj?NovostiID=@x.NovostiID" class="btn btn-success">Dodaj slike za novost</a>
+                        <a href="/NovostiSlike/Prikazi?NovostiID=@x.NovostiID" class="btn btn-info">Prikaži slike za novost</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (TempData["error_poruka"] != null)
+    {
+        <br />
+        <div class="alert alert-danger">
+            @error_poruka
+        </div>
+    }
+    @if (TempData["success_poruka"] != null)
+    {
+        <br />
+        <div class="alert alert-light">
+            @success_poruka
+        </div>
+    }
+    <a href="/Novosti/Dodaj" class="btn btn-success">Dodaj novost</a>
+    <a href="/Admin/Prikazi" class="btn btn-info">Back</a>
+   

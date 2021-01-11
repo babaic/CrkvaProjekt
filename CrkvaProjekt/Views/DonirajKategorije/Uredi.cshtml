@@ -1,0 +1,52 @@
+﻿@using CrkvaProjekt.Models
+@model CrkvaProjekt.ViewModels.DonirajKategorijeUrediVM
+
+@{ 
+    ViewData["Title"] = "Uredi";
+    Layout = "AdminPage";
+}
+<head>
+    <style>
+        input.error{
+            border:solid 1px red;
+        }
+    </style>
+</head>
+
+<h1>Uredi</h1>
+
+<form id="rForm" action="/DonirajKategorije/Snimi" method="post">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x=> x.DonirajKategorijeID)
+    <div class="form-group">
+        <label asp-for="Naziv" class="control-label">Naziv</label>
+        <div>
+            <input asp-for="Naziv"/>
+            <span asp-validation-for="Naziv" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+
+    <input type="submit" value="Snimi" />
+</form>
+
+<script>
+    $(document).ready(function () {
+        $("#rForm").validate({
+            rules: {
+                Naziv: {
+                    required: true,
+                    maxlength: 30,
+                    minlength: 3
+                }
+            },
+            messages: {
+                Naziv: {
+                    required: "Naziv je obavezan. ",
+                    maxlength: "Maksimalno 30 znakova. ",
+                    minlength: "Naziv mora imat barem 3 znaka. "
+                }
+            }
+        })
+    })
+</script>

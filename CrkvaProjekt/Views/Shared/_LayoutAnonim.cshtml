@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "_LayoutAnonim";
+}
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login - Saborna crkva Mostar</title>
+
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/additional-methods.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/additional-methods.js"></script>
+
+
+
+    <script src="/js/site.js"></script>
+
+    <script src="/jsFIT.js"></script>
+    <style type="text/css">
+
+    body { background-image: url("https://cdn.hipwallpaper.com/i/72/35/M3ilZL.jpg"); 
+           background-position: top; 
+           background-repeat: no-repeat;
+           background-size:cover;
+    }
+    </style>
+</head>
+<body>
+
+    @RenderBody()
+
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+

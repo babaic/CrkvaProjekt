@@ -1,0 +1,46 @@
+﻿
+@model CrkvaProjekt.ViewModels.ObavjestenjaSlike.ObavjestenjaSlikeDodajVM
+@using CrkvaProjekt.Models
+
+@{
+    ViewData["Title"] = "Dodaj sliku";
+    Layout = "AdminPage";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form enctype="multipart/form-data" action="/ObavjestenjaSlike/Snimi" method="post">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.ObavjestenjaSlikeID)
+    <div class="form-group">
+        <label>ID Obavještenja</label>
+        <div>
+            @Html.TextBoxFor(x => x.ObavjestenjeID, new { @readonly = "readonly" })
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <label>Naslov</label>
+        <div>
+            @Html.TextBoxFor(x => x.Naslov, new { @readonly = "readonly" })
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <label>Kategorija Obavještenja</label>
+        <div>
+            @Html.TextBoxFor(x => x.Kategorija, new { @readonly = "readonly" })
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="UploadSlike.Slika"></label>
+        <div>
+            <input asp-for="UploadSlike.Slika" type="file">
+            <span asp-validation-for="UploadSlike.Slika"></span>
+        </div>
+    </div>
+    <br />
+    <input class="btn btn-success" type="submit" value="Snimi" />
+
+</form>

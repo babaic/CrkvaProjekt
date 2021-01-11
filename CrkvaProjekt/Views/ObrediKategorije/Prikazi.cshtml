@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Prikazi";
+    Layout = "AdminPage";
+    List<ObrediKategorije> kategorije = (List<ObrediKategorije>)ViewData["kategorije-kljuc"];
+    string success_poruka = (string)TempData["success_poruka"];
+    string error_poruka = (string)TempData["error_poruka"];
+}
+
+
+<h2>Prikaz kategorija za obrede</h2>
+
+<table class="table tab-pane">
+    <thead>
+        <tr>
+            <th>Naziv kategorije</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    @foreach (var x in kategorije)
+    {
+        <tr>
+            <td hidden>@x.ObrediKategorijeID</td>
+            <td>@x.Naziv</td>
+
+            <td>
+                <a href="/ObrediKategorije/Uredi?ObrediKategorijeID=@x.ObrediKategorijeID" class="btn btn-info">Uredi</a>
+                <a href="/ObrediKategorije/Obrisi?ObrediKategorijeID=@x.ObrediKategorijeID" class="btn btn-danger">Obriši</a>
+            </td>
+
+        </tr>
+    }
+</table>
+@if (TempData["error_poruka"] != null)
+{
+    <br />
+    <div class="alert alert-danger">
+        @error_poruka
+    </div>
+}
+@if (TempData["success_poruka"] != null)
+{
+    <br />
+    <div class="alert alert-light">
+        @success_poruka
+    </div>
+}
+
+<a href="/ObrediKategorije/Dodaj" class="btn btn-success">Dodaj novu kategoriju</a>
+<a href="/Admin/Prikazi" class="btn btn-info">Back</a>

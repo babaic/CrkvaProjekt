@@ -1,0 +1,64 @@
+﻿
+@using CrkvaProjekt.Models
+@using CrkvaProjekt.ViewModels.ObavjestenjaSlike
+
+@{
+    ViewData["Title"] = "Prikazi";
+    Layout = "AdminPage";
+    List<ObavjestenjaSlikePrikaziVM> slike = (List<ObavjestenjaSlikePrikaziVM>)ViewData["slike-kljuc"];
+    int IDObavjestenje = (int)ViewData["obavjestenje-kljuc"];
+    string success_poruka = (string)TempData["success_poruka"];
+    string error_poruka = (string)TempData["error_poruka"];
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID Obavještenja</th>
+            <th>Naslov</th>
+            <th>Kategorija</th>
+            <th>Slika</th>
+            <th>Akcije</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in slike)
+        {
+            <tr>
+                <td>@x.ObavjestenjeID</td>
+                <td>@x.Naslov</td>
+                <td>@x.Kategorija</td>
+                @if (x.Slika != null)
+                {
+                <td><img src="data:image;base64,@System.Convert.ToBase64String(x.Slika)" width="140" height="80" /></td>
+                }
+                else
+                {
+                    <td>Nema slike</td>
+                }
+                <td>
+                    <a href="/ObavjestenjaSlike/Obrisi?ObavjestenjeSlikaID=@x.ObavjestenjaSlikeID" class="btn btn-danger">Obriši</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (TempData["error_poruka"] != null)
+{
+    <br />
+    <div class="alert alert-danger">
+        @error_poruka
+    </div>
+}
+@if (TempData["success_poruka"] != null)
+{
+    <br />
+    <div class="alert alert-light">
+        @success_poruka
+    </div>
+}
+<a href="/ObavjestenjaSlike/Dodaj?ObavjestenjeID=@IDObavjestenje" class="btn btn-success">Dodaj sliku za obavještenje</a>
+<a href="/Obavjestenja/Prikazi" class="btn btn-info">Back</a>
