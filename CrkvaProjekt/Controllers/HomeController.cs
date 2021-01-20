@@ -27,7 +27,7 @@ namespace CrkvaProjekt.Controllers
 
         }
 
-        public async Task<IActionResult> Index(string searchString, int pageNumber = 1)
+        public async Task<IActionResult> IndexLat(string searchString, int pageNumber = 1)
         {
 
             var query = _context.Obavjestenja.OrderByDescending(x => x.DatumObjavljivanja).Select(x => new ObavjestenjaPrikaziVM
@@ -46,7 +46,7 @@ namespace CrkvaProjekt.Controllers
             int pageSize = 5;
             return View(await PaginatedList<ObavjestenjaPrikaziVM>.CreateAsync(query.AsNoTracking(), pageNumber, pageSize));
         }
-        public async Task<IActionResult> IndexCir(string searchString, int pageNumber = 1)
+        public async Task<IActionResult> Index(string searchString, int pageNumber = 1)
         {
 
             var query = _context.Obavjestenja.OrderByDescending(x => x.DatumObjavljivanja).Select(x => new ObavjestenjaPrikaziVM
@@ -320,6 +320,10 @@ namespace CrkvaProjekt.Controllers
             return View();
         }
         public IActionResult Doniraj()
+        {
+            return View();
+        }
+        public IActionResult DonirajCir()
         {
             return View();
         }

@@ -141,6 +141,9 @@
             font-weight: bold;
             font-size: 200%;
         }
+        #doniraj {
+            text-align: center;
+        }
 
         @@media(max-width:415px) {
             #headerslika {
@@ -167,6 +170,11 @@
                 float: none;
             }
         }
+        @@media (max-width:490px) {
+            #slikatext {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -175,15 +183,15 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="/Home/IndexCir">Саборна Црква Мостар</a>
+            <a class="navbar-brand" href="/Home/Index">Саборна Црква Мостар</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/Home/IndexCir">
-                            Хоме
+                        <a class="nav-link" href="/Home/Index">
+                            Почетна
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
@@ -204,10 +212,10 @@
     <!-- Page Content -->
     <div id="container1" class="container">
         <div id="headerslika">
-            <a href="/Home/IndexCir">
+            <a href="/Home/Index">
                 <img style="object-fit:cover; width:100%; height:100px;" src="https://www.frontal.ba/img/s/750x400/upload/images/DEJAN/hrammostar.jpg" />
             </a>
-            <div class="centered">Саборна Црква Мостар</div>
+            <div id="slikatext" class="centered">Саборна Црква Мостар</div>
         </div>
         <div class="row">
 
@@ -275,7 +283,7 @@
             <div class="col-md-4">
 
                 <div class="card my-4">
-                    <h5 class="card-header">Промијени језик</h5>
+                    <h5 class="card-header">Промијени писмо</h5>
                     <div class="card-body">
                         <button class="btn btn-secondary" onclick="location.href='@Url.Action("Prikazi", "ProcitajVise")?ObavjestenjeID=@Model.ObavjestenjeID'">Ćirilica</button>
                     </div>
@@ -285,7 +293,7 @@
                     <h5 class="card-header">Претражи обавјештења</h5>
                     <div class="card-body">
                         <div class="input-group">
-                            <form asp-controller="Home" asp-action="IndexCir">
+                            <form asp-controller="Home" asp-action="Index">
                                 <input style="float:right;" type="submit" class="btn btn-secondary" value="Го!" />
                                 <div style="overflow:hidden; padding-right:.5em;">
                                     <input type="text" name="searchString" class="form-control" placeholder="Претражи...">
@@ -367,7 +375,12 @@
 
                     </div>
                 </div>
-
+                <div class="card my-4">
+                    <h5 class="card-header">Донирај</h5>
+                    <div id="doniraj" class="card-body">
+                        <a href="/Home/DonirajCir"><img src="~/images/musa musa.png" /></a>
+                    </div>
+                </div>
                 <!-- Galerija slika side widget-->
 
             </div>

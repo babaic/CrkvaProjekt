@@ -99,6 +99,9 @@
             font-weight: bold;
             font-size: 200%;
         }
+        #doniraj {
+            text-align: center;
+        }
 
         @@media(max-width:415px) {
             #headerslika {
@@ -111,6 +114,11 @@
                 float: none;
             }
         }
+        @@media (max-width:490px) {
+            #slikatext {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -119,15 +127,15 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="/Home/Index">Saborna Crkva Mostar</a>
+            <a class="navbar-brand" href="/Home/IndexLat">Saborna Crkva Mostar</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/Home/Index">
-                            Home
+                        <a class="nav-link" href="/Home/IndexLat">
+                            Početna
 
                         </a>
                     </li>
@@ -140,9 +148,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/Home/Kontakti">Kontakti</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Home/Doniraj">Doniraj</a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -151,10 +156,10 @@
     <!-- Page Content -->
     <div id="container1" class="container">
         <div id="headerslika">
-            <a href="/Home/Index">
+            <a href="/Home/IndexLat">
                 <img style="object-fit:cover; width:100%; height:100px;" src="https://www.frontal.ba/img/s/750x400/upload/images/DEJAN/hrammostar.jpg" />
             </a>
-            <div class="centered">Saborna Crkva Mostar</div>
+            <div id="slikatext" class="centered">Saborna Crkva Mostar</div>
         </div>
         <div class="row">
 
@@ -188,9 +193,9 @@
         <div class="col-md-4">
 
             <div class="card my-4">
-                <h5 class="card-header">Promijeni jezik</h5>
+                <h5 class="card-header">Promijeni pismo</h5>
                 <div class="card-body">
-                    <button class="btn btn-secondary" onclick="location.href='@Url.Action("IndexCir", "Home")'">Ćirilica</button>
+                    <button class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Home")'">Ćirilica</button>
                 </div>
             </div>
             <!-- Search Widget -->
@@ -198,7 +203,7 @@
                 <h5 class="card-header">Pretraži obavještenja</h5>
                 <div class="card-body">
                     <div class="input-group">
-                        <form asp-controller="Home" asp-action="Index">
+                        <form asp-controller="Home" asp-action="IndexLat">
                             <input style="float:right;" type="submit" class="btn btn-secondary" value="Go!" />
                             <div style="overflow:hidden; padding-right:.5em;">
                                 <input type="text" name="searchString" class="form-control" placeholder="Pretraži...">
@@ -280,7 +285,12 @@
 
                 </div>
             </div>
-
+            <div class="card my-4">
+                <h5 class="card-header">Doniraj</h5>
+                <div id="doniraj" class="card-body">
+                    <a href="/Home/Doniraj"><img src="~/images/musa musa.png" /></a>
+                </div>
+            </div>
         </div>
 
         </div>
